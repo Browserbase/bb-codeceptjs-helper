@@ -1,0 +1,16 @@
+{
+  "name": "bb-codeceptjs-helper",
+  "version": "0.0.2",
+  "description": "Browserbase Helper for CodeceptJS Tests",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "support@browserbase.io",
+  "license": "ISC",
+  "dependencies": {
+    "deasync-promise": "^1.0.1",
+    "deepmerge": "^4.2.2",
+    "got": "^11.8.1"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "bb-codeceptjs-helper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Browserbase Helper for CodeceptJS Tests",
   "main": "app.js",
   "scripts": {

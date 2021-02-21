@@ -13,6 +13,9 @@ module.exports = function (config) {
             if (container.helpers('Puppeteer')) {
                 createNewRemotePuppeteerSession(test, config);
             }
+            if (container.helpers('WebDriver')) {
+                setTestConfigForWebdriver(test);
+            }
         });
 
         event.dispatcher.on(event.test.after, test => {
@@ -91,4 +94,16 @@ function getSessionId() {
     if (container.helpers('WebDriverIO')) {
         return container.helpers('WebDriverIO').browser.requestHandler.sessionID;
     }
+}
+
+function setTestConfigForWebdriver(test) {
+    const WebDriver = container.helpers('WebDriver');
+    WebDriver.options.desiredCapabilities['bb:options'].name = test.title;
+    // Merging this config in a recorder causes the waitfortimeout to be reconverted into seconds
+    // by the upstream lib. Here we do a basic check to see if we need to reconvert it to milliseconds
+    // so the upstream will not break
+    if ((WebDriver.options.waitForTimeout / 1000) < 1) {
+        WebDriver.options.waitForTimeout *= 1000
+    }
+    WebDriver._setConfig(WebDriver.options);
 }
